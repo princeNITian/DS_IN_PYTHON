@@ -59,11 +59,14 @@ class LinkedList(object):
         self.size = self.size + 1;
         newNode = Node(data);
         actualNode = self.head;
-
-        while actualNode.nextNode is not None:
+        
+        if not self.head:
+            self.head = newNode
+        else:
+         while actualNode.nextNode is not None:
             actualNode = actualNode.nextNode;
 
-        actualNode.nextNode = newNode;
+         actualNode.nextNode = newNode;
 
     def traverseList(self):
         actualNode = self.head;
@@ -74,11 +77,12 @@ class LinkedList(object):
 
 
 linkedlist = LinkedList();
-
+linkedlist.insertEnd(90)
 linkedlist.insertStart(12);
 linkedlist.insertStart(122);
 linkedlist.insertStart(3);
 linkedlist.insertEnd(5);
+linkedlist.insertStart(2)
 
 linkedlist.traverseList();
 print(linkedlist.size1());
