@@ -1,5 +1,6 @@
 import sys
 import heapq
+
 class Edge:
     def __init__(self,weight,startVertex,targetVertex):
         self.weight = weight
@@ -13,25 +14,24 @@ class Node:
         self.predecessor = None
         self.adjacencyList = []
         self.minDistance = sys.maxsize
-        
-    def __cmp__(self,otherVertex):
-        return self.cmp(self.minDistance,otherVertex.minDistance)
-        
+
+
+# based on minDistance property heap will be maintained     
     def __lt__(self,other):
         selfPriority = self.minDistance
         otherPriority = other.minDistance
         return selfPriority < otherPriority
         
 class Algorithm:
-    
-    def calculateShortestPath(self, vertexList, startVertex):
+    #removed vertexList argument
+    def calculateShortestPath(self,startVertex):
         
         q = []
         startVertex.minDistance = 0
         heapq.heappush(q,startVertex)
         
-        while len(q) > 0 :
-            actualVertex  = heapq.heappop(q)
+        while len(q)>0:
+            actualVertex = heapq.heappop(q)
             
             for edge in actualVertex.adjacencyList:
                 u = edge.startVertex
@@ -42,6 +42,7 @@ class Algorithm:
                     v.predecessor = u
                     v.minDistance = newDistance
                     heapq.heappush(q,v)
+                    
     def getShortestPathTo(self,targetVertex):
         print("Shortest path to vertex is:", targetVertex.minDistance)
         
@@ -50,7 +51,8 @@ class Algorithm:
         while node is not None:
             print("%s " % node.name)
             node = node.predecessor
-
+                    
+                
 node1 = Node("A")
 node2 = Node("B")
 node3 = Node("C")
@@ -94,10 +96,10 @@ node3.adjacencyList.append(edge14)
 node3.adjacencyList.append(edge15)
 node4.adjacencyList.append(edge16)
 
-vertexList = (node1,node2,node3,node4,node5,node6,node7,node8)
+#vertexList = (node1,node2,node3,node4,node5,node6,node7,node8)
 
 algorithm = Algorithm()
-algorithm.calculateShortestPath(vertexList,node1)
+algorithm.calculateShortestPath(node1)
 algorithm.getShortestPathTo(node4)
 
 
@@ -110,4 +112,4 @@ algorithm.getShortestPathTo(node4)
 
 
 
-
+        
