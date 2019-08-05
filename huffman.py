@@ -16,8 +16,6 @@ class Node:
 class HuffMan:
     
     def __init__(self):
-        self.head = None;
-        self.size = 0;
         self.charArray = []
         
     def insert(self,name,frequency):
